@@ -18,19 +18,21 @@ def load_json_data(file_path_json):
 def parse_json_data(json_data):
   output = ""
   for animal in json_data:
-    output += '<li class="cards__item">'
-    output += f'Name: {animal["name"]}<br/>\n'
-    output += f'Diet: {animal["characteristics"]["diet"]}<br/>\n'
+    output += '<li class="cards__item">\n'
+    output += f'  <div class="card__title">Name: {animal["name"]}</div>\n'
+    output += f'  <p class="card__text"><strong>Diet:</strong> {animal["characteristics"]["diet"]}<br/>\n'
 
     if animal["locations"]:
-      output += f'Location: {animal["locations"][0]}<br/>\n'
+      output += f'    <strong>Location:</strong> {animal["locations"][0]}<br/>\n'
 
-    if "type" in animal["characteristics"]:
-      output += f'{animal["characteristics"]["type"]}<br/>\n'
-      output += '</li>'
+    if "type" in animal["characteristics"] and animal["characteristics"]["type"]:
+      output += f'<strong>Type:</strong> {animal["characteristics"]["type"]}<br/>\n'
     else:
-      output += f'Type not available.<br/>\n'
-      output += '</li>'
+      output += f'<strong>Type:</strong> Type not available.<br/>\n'
+
+    output += '  </p>\n'
+    output += '</li>\n'
+
   return output
 
 
