@@ -26,9 +26,9 @@ def parse_json_data(json_data):
       output += f'    <strong>Location:</strong> {animal["locations"][0]}<br/>\n'
 
     if "type" in animal["characteristics"] and animal["characteristics"]["type"]:
-      output += f'<strong>Type:</strong> {animal["characteristics"]["type"]}<br/>\n'
+      output += f'{animal["characteristics"]["type"]}<br/>\n'
     else:
-      output += f'<strong>Type:</strong> Type not available.<br/>\n'
+      output += f'Type not available.<br/>\n'
 
     output += '  </p>\n'
     output += '</li>\n'
