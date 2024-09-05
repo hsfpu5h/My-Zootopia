@@ -1,8 +1,9 @@
 import os
 import requests
+import data_fetcher
 
 
-def get_api_data(name):
+'''def get_api_data(name):
 
     api_key = os.getenv('API_NINJAS_KEY')
     api_url = f"https://api.api-ninjas.com/v1/animals?name={name}"
@@ -14,7 +15,7 @@ def get_api_data(name):
                 return data
         except Exception as error:
             print(f"Error: {error}")
-    return None
+    return None'''
 
 
 def load_html_data(file_path_html):
@@ -60,8 +61,9 @@ def write_to_file(file_path, content):
 
 
 def main():
-    name = input("What animal?: ")
-    api_data = get_api_data(name)
+    animal_name = input("What animal?: ")
+    api_data = data_fetcher.fetch_data(animal_name)
+    #api_data = get_api_data(name)
     if api_data:
         html_template = load_html_data("animals_template.html")
         api_data_json = parse_json_data(api_data)
@@ -72,7 +74,7 @@ def main():
                 <html>
                 <head><title>Animal Not Found</title></head>
                 <body>
-                    <h2>The animal '{name}' doesn't exist.</h2>
+                    <h2>The animal '{animal_name}' doesn't exist.</h2>
                 </body>
                 </html>
                 """
