@@ -18,17 +18,19 @@ def load_json_data(file_path_json):
 def parse_json_data(json_data):
   output = ""
   for animal in json_data:
-    output += f'\nName: {animal["name"]}\n'
-    output += f'Diet: {animal["characteristics"]["diet"]}\n'
+    output += '<li class="cards__item">'
+    output += f'Name: {animal["name"]}<br/>\n'
+    output += f'Diet: {animal["characteristics"]["diet"]}<br/>\n'
 
     if animal["locations"]:
-      first_location = animal["locations"][0]
-      output += f'Location: {first_location}\n'
+      output += f'Location: {animal["locations"][0]}<br/>\n'
 
     if "type" in animal["characteristics"]:
-      output += f'{animal["characteristics"]["type"]}\n'
+      output += f'{animal["characteristics"]["type"]}<br/>\n'
+      output += '</li>'
     else:
-      output += f'Type not available.\n\n'
+      output += f'Type not available.<br/>\n'
+      output += '</li>'
   return output
 
 
@@ -37,6 +39,7 @@ def replace_animals_info(html_template, animals_info):
 
 
 def write_to_file(file_path, content):
+  print(content)
   with open(file_path, "w") as handle:
     handle.write(content)
 
